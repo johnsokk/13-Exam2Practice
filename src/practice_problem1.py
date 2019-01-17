@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  IMPLEMENTING CLASSES.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Kaia Johnson.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -39,15 +39,15 @@ def main():
     # UN-comment tests as you work the problems.
     ####################################################################
 
-#     run_test_init()
-#     run_test_append_string()
-#     run_test_double()
-#     run_test_shrink()
-#     run_test_double_then_shrink()
-#     run_test_reset()
-#     run_test_steal()
-#     run_test_get_history()
-#     run_test_combined_box()
+    run_test_init()
+    #run_test_append_string()
+    #run_test_double()
+    run_test_shrink()
+    #run_test_double_then_shrink()
+    #run_test_reset()
+    #run_test_steal()
+    #run_test_get_history()
+    #run_test_combined_box()
 
 
 ########################################################################
@@ -93,8 +93,15 @@ class Box(object):
           :type contents: str
           :type volume: int
         """
+        self.volume = volume
+        if len(contents) <= self.volume:
+            self.contents = contents
+        else:
+            self.contents = ''
+        self.originalcontents = contents
+
         # --------------------------------------------------------------
-        # TODO: 2. Implement and test this function.
+        # DONE: 2. Implement and test this function.
         #     See the testing code (below) for more examples.
         # --------------------------------------------------------------
         # --------------------------------------------------------------
@@ -239,6 +246,18 @@ class Box(object):
         Type hints:
           :type new_volume: int
         """
+        self.volume = new_volume
+        num = len(self.contents) - self.volume
+        container = ''
+        if self.volume < len(self.contents):
+            for k in range(num):
+                container = container + self.contents[self.volume+k]
+            self.contents = ''
+            for k in range(self.volume):
+                self.contents += self.originalcontents[k]
+        return container
+
+
         # --------------------------------------------------------------
         # TODO: 5. Implement and test this function.
         #     The testing code is already written for you (above).
